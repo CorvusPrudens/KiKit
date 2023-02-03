@@ -94,6 +94,22 @@ def oshpark(**kwargs):
     app = fakeKiCADGui()
     return execute(oshpark.exportOSHPark, kwargs)
 
+@click.command()
+@click.argument("schematic", type=click.Path(dir_okay=False))
+@fabCommand
+@click.option("--rows", type=str, default=1,
+    help="The number of rows for panelization")
+@click.option("--cols", type=str, default=1,
+    help="The number of columns for panelization")
+def electrosmith(**kwargs):
+    """
+    Prepare fabrication files for Electrosmith
+    """
+    from kikit.fab import electrosmith
+    from kikit.common import fakeKiCADGui
+    app = fakeKiCADGui()
+    return execute(electrosmith.exportElectrosmith, kwargs)
+
 @click.group()
 def fab():
     """
@@ -104,3 +120,4 @@ def fab():
 fab.add_command(jlcpcb)
 fab.add_command(pcbway)
 fab.add_command(oshpark)
+fab.add_command(electrosmith)
