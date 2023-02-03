@@ -101,6 +101,10 @@ def oshpark(**kwargs):
     help="The number of rows for panelization")
 @click.option("--cols", type=str, default=1,
     help="The number of columns for panelization")
+@click.option("--top-ref", type=str, default=None,
+    help="Top side reference component")
+@click.option("--bot-ref", type=str, default=None,
+    help="Bottom side reference component")
 def electrosmith(**kwargs):
     """
     Prepare fabrication files for Electrosmith
